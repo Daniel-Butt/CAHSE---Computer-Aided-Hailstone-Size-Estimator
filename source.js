@@ -118,15 +118,15 @@ function draw(){
 
 function windowResized() {
     if(img){
-        let widthScaleFactor = (windowWidth*windowScale - 300) / img.width;
-        let heightScaleFactor = (windowHeight*windowScale) / img.height;
+        let widthScaleFactor = (windowWidth*windowScale - 350) / img.width;
+        let heightScaleFactor = (windowHeight*windowScale - 50) / img.height;
 
         let scaleFactor = Math.min(widthScaleFactor, heightScaleFactor);
 
         resizeCanvas(img.width * scaleFactor, img.height * scaleFactor);
     }
     else{
-        resizeCanvas(windowWidth*windowScale - 300, windowHeight*windowScale);
+        resizeCanvas(windowWidth*windowScale - 350, windowHeight*windowScale - 50);
     }
     let x = (windowWidth - width) / 2;
     let y = (windowHeight - height) / 2;
@@ -239,6 +239,36 @@ function addMousePoint() {
         pts.push([mouseX/width, mouseY/height])
 
         return pts
+    }
+}
+
+function keyTyped() {
+    if (key === 'u'){
+        if (state != 'idle'){
+            let pts;
+    
+            switch(state){
+                case 'Hand Length':
+                    pts = handLengthPoints;
+                    break;
+                case 'Hand Width':
+                    pts = handWidthPoints;
+                    break;
+                case 'Hail Size':
+                    pts = hailSizePoints;
+                    break;
+    
+            }
+    
+            pts.pop();
+        }
+    }
+
+}
+
+function keyPressed(){
+    if (keyCode === ENTER){
+        state = 'idle';
     }
 }
 
