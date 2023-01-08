@@ -104,8 +104,8 @@
   function QSGui(label, parent, sketch) {
 
     // hard code the position, it can be changed later
-    let x = 20;
-    let y = 20;
+    let x = 5;
+    let y = 50;
 
     var qs = QuickSettings.create(x, y, label, parent);
 
@@ -148,6 +148,7 @@
     // pass through ...
     this.show = function() { qs.show(); };
     this.hide = function() { qs.hide(); };
+    this.setValue = function(title, value) {qs.setValue(title, value);};
     this.toggleVisibility = function() { qs.toggleVisibility(); };
     this.setPosition  = function(x, y) {
       qs.setPosition(x, y);
